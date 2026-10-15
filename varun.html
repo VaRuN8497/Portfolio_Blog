@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Varun Kumar — 3rd semester B.Tech CSIT student at REVA University, interested in software development, full-stack development, AI integration, and problem solving.">
+  <title>Varun Kumar | Student Developer Portfolio</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0b1728;
+      --card: rgba(15, 31, 51, 0.82);
+      --card-hover: rgba(19, 39, 63, 0.95);
+      --text: #edf5ff;
+      --muted: #9fb0c5;
+      --line: rgba(148, 163, 184, 0.16);
+      --accent: #55b7ff;
+      --accent-2: #8b7cff;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(85,183,255,.12), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(139,124,255,.10), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - 40px, var(--max)); margin: auto; }
+
+    /* Navigation */
+    header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      background: rgba(7,17,31,.78);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      font-weight: 800;
+      letter-spacing: -.03em;
+      font-size: 1.05rem;
+    }
+    .brand span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 26px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+    .nav-links a { transition: color .2s ease; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* General */
+    section { padding: 92px 0; scroll-margin-top: 70px; }
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .76rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.55rem);
+      line-height: 1.15;
+      letter-spacing: -.04em;
+      margin-bottom: 14px;
+    }
+    .section-intro {
+      color: var(--muted);
+      max-width: 680px;
+      margin-bottom: 34px;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding-top: 120px;
+      position: relative;
+    }
+    .hero-content { max-width: 850px; }
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(15,31,51,.65);
+      color: #c7d7ea;
+      font-size: .84rem;
+      margin-bottom: 22px;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #62d9a5;
+      box-shadow: 0 0 12px rgba(98,217,165,.7);
+    }
+    .hero h1 {
+      font-size: clamp(3.2rem, 9vw, 6.8rem);
+      line-height: .95;
+      letter-spacing: -.075em;
+      max-width: 900px;
+    }
+    .gradient {
+      background: linear-gradient(100deg, var(--accent), #b8b0ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-subtitle {
+      margin-top: 20px;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      color: #c6d4e5;
+    }
+    .hero-description {
+      max-width: 680px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      font-weight: 700;
+      font-size: .9rem;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); border-color: rgba(85,183,255,.45); }
+    .btn-primary {
+      background: linear-gradient(135deg, #1689d8, #6558d8);
+      border-color: transparent;
+      color: white;
+    }
+    .btn-secondary { background: rgba(15,31,51,.7); color: #dbe9f8; }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .about-card { padding: 30px; }
+    .about-card p { color: var(--muted); }
+    .profile-facts {
+      display: grid;
+      gap: 0;
+      overflow: hidden;
+    }
+    .fact {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .fact:last-child { border-bottom: 0; }
+    .fact-label {
+      color: #758aa3;
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-weight: 800;
+    }
+    .fact-value { margin-top: 3px; color: #e4edf7; font-weight: 650; }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .skill {
+      padding: 22px;
+      transition: transform .22s ease, background .22s ease, border-color .22s ease;
+    }
+    .skill:hover, .project:hover {
+      transform: translateY(-5px);
+      background: var(--card-hover);
+      border-color: rgba(85,183,255,.28);
+    }
+    .skill-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: rgba(85,183,255,.09);
+      color: var(--accent);
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+    .skill h3 { font-size: 1rem; margin-bottom: 5px; }
+    .skill p { color: var(--muted); font-size: .86rem; }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .project {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      transition: transform .22s ease, background .22s ease, border-color .22s ease;
+    }
+    .project-number {
+      color: #70859d;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: .78rem;
+      margin-bottom: 18px;
+    }
+    .project h3 { font-size: 1.15rem; margin-bottom: 9px; }
+    .project p { color: var(--muted); font-size: .9rem; flex: 1; }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 20px 0;
+    }
+    .tag {
+      font-size: .7rem;
+      color: #b9cce1;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.025);
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+    .project-link {
+      color: var(--accent);
+      font-size: .84rem;
+      font-weight: 750;
+    }
+
+
+    /* Coding activity */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .stat {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      transition: transform .22s ease, background .22s ease, border-color .22s ease;
+    }
+    .stat:hover {
+      transform: translateY(-5px);
+      background: var(--card-hover);
+      border-color: rgba(85,183,255,.28);
+    }
+    .stat-source { color: #758aa3; font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 800; }
+    .stat-value { margin-top: 10px; font-size: 2rem; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+    .stat-value.small { font-size: 1.25rem; letter-spacing: -.02em; padding: 5px 0; }
+    .stat-value.unavailable { color: #71869e; }
+    .stat-label { margin-top: 6px; color: var(--muted); font-size: .86rem; flex: 1; }
+    .stat .project-link { margin-top: 16px; }
+    .stats-note { margin-top: 18px; color: #71869e; font-size: .82rem; }
+
+    /* Skill status */
+    .skill-status {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: .7rem;
+      color: #b9cce1;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.025);
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    /* Contact links */
+    .social-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-end; max-width: 420px; }
+
+    a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .hero-srn { margin-top: 10px; color: #8ea3bb; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9rem; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { transition: none; }
+      .skill, .project, .stat, .btn { transition: none; }
+    }
+
+    /* Goal */
+    .goal {
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+    .goal::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -90px;
+      top: -90px;
+      border-radius: 50%;
+      background: rgba(85,183,255,.07);
+    }
+    .goal p { color: var(--muted); max-width: 800px; }
+
+    /* Contact */
+    .contact-card {
+      padding: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+    .contact-card p { color: var(--muted); margin-top: 6px; }
+
+    footer {
+      padding: 30px 0 40px;
+      border-top: 1px solid var(--line);
+      color: #71869e;
+      font-size: .8rem;
+    }
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 800px) {
+      .nav-links { gap: 14px; font-size: .8rem; }
+      .about-grid, .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .social-links { justify-content: flex-start; }
+      .contact-card { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (max-width: 540px) {
+      .container { width: min(100% - 26px, var(--max)); }
+      header { position: absolute; }
+      nav { min-height: 62px; }
+      .brand { font-size: .95rem; }
+      .nav-links { display: none; }
+      section { padding: 72px 0; }
+      .hero { min-height: 92vh; padding-top: 90px; }
+      .hero h1 { font-size: clamp(2.8rem, 17vw, 4.2rem); }
+      .skills-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .about-card, .project, .goal, .contact-card { padding: 23px; }
+      footer .container { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a class="brand" href="#home">Varun<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#activity">Activity</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#goal">Goals</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-content reveal">
+        <div class="hero-kicker"><span class="status-dot"></span> Student Developer · REVA University</div>
+        <h1>Varun <span class="gradient">Kumar</span></h1>
+        <div class="hero-subtitle">B.Tech CSIT · 3rd Semester</div>
+        <div class="hero-srn">SRN: R25EJ172</div>
+        <p class="hero-description">
+          I am interested in software development, full-stack development, AI integration,
+          and problem solving, and I am building my skills through coursework, coding
+          practice, and projects.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-secondary" href="https://github.com/VaRuN8497" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">01 / About</div>
+          <h2 class="section-title">A developer in progress.</h2>
+          <p class="section-intro">Building a practical foundation through consistent learning and hands-on work.</p>
+        </div>
+
+        <div class="about-grid">
+          <article class="card about-card reveal">
+            <p>
+              I am a Computer Science and Information Technology student at REVA University.
+              I am building practical programming skills through coursework, regular practice
+              on coding platforms, and small projects. So far I have worked mostly in C++,
+              solving problems on LeetCode and HackerRank, and I use Git and GitHub to keep
+              track of my work. I also build front-end websites and am exploring Python and
+              AI tools. I want to keep turning what I learn into working projects.
+            </p>
+          </article>
+
+          <div class="card profile-facts reveal">
+            <div class="fact">
+              <div class="fact-label">Name</div>
+              <div class="fact-value">Varun Kumar</div>
+            </div>
+            <div class="fact">
+              <div class="fact-label">SRN</div>
+              <div class="fact-value">R25EJ172</div>
+            </div>
+            <div class="fact">
+              <div class="fact-label">Program</div>
+              <div class="fact-value">B.Tech Computer Science and Information Technology (CSIT)</div>
+            </div>
+            <div class="fact">
+              <div class="fact-label">Semester</div>
+              <div class="fact-value">3rd Semester</div>
+            </div>
+            <div class="fact">
+              <div class="fact-label">University</div>
+              <div class="fact-value">REVA University</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="activity">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">02 / Coding Activity</div>
+          <h2 class="section-title">Activity snapshot.</h2>
+          <p class="section-intro">Figures taken from my public profiles. Where a number could not be verified, the card says so.</p>
+        </div>
+
+        <div class="stats-grid">
+          <article class="card stat reveal">
+            <div class="stat-source">GitHub</div>
+            <div class="stat-value">15</div>
+            <div class="stat-label">Public repositories, including coursework forks.</div>
+            <a class="project-link" href="https://github.com/VaRuN8497" target="_blank" rel="noopener noreferrer" aria-label="Open Varun Kumar's GitHub profile">View profile ↗</a>
+          </article>
+
+          <article class="card stat reveal">
+            <div class="stat-source">LeetCode</div>
+            <div class="stat-value small">C++ 6 · C 2</div>
+            <div class="stat-label">Problems solved, as listed by language on the profile. A total is not shown publicly.</div>
+            <a class="project-link" href="https://leetcode.com/u/Varun_Chan7/" target="_blank" rel="noopener noreferrer" aria-label="Open Varun Kumar's LeetCode profile">View profile ↗</a>
+          </article>
+
+          <article class="card stat reveal">
+            <div class="stat-source">HackerRank</div>
+            <div class="stat-value small unavailable">Not publicly available</div>
+            <div class="stat-label">Solved count could not be verified.</div>
+            <a class="project-link" href="https://www.hackerrank.com/profile/varunkashyap7214" target="_blank" rel="noopener noreferrer" aria-label="Open Varun Kumar's HackerRank profile">View profile ↗</a>
+          </article>
+
+          <article class="card stat reveal">
+            <div class="stat-source">LinkedIn</div>
+            <div class="stat-value small unavailable">Not publicly available</div>
+            <div class="stat-label">Post count could not be verified.</div>
+            <a class="project-link" href="https://www.linkedin.com/in/varun-kumar-86139a383" target="_blank" rel="noopener noreferrer" aria-label="Open Varun Kumar's LinkedIn profile">View profile ↗</a>
+          </article>
+        </div>
+        <p class="stats-note reveal">Checked on 15 October 2026. This is a static snapshot and will change over time.</p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">03 / Skills</div>
+          <h2 class="section-title">Tools I’m learning with.</h2>
+          <p class="section-intro">What I have used in my work so far, and what I am still learning.</p>
+        </div>
+
+        <div class="skills-grid">
+          <article class="card skill reveal"><div class="skill-icon">C++</div><h3>C++</h3><p>Used for coursework, LeetCode and HackerRank solutions, and OOP practice.</p><span class="skill-status">Used in projects</span></article>
+          <article class="card skill reveal"><div class="skill-icon">C</div><h3>C</h3><p>Used for a couple of LeetCode problems.</p><span class="skill-status">Basic practice</span></article>
+          <article class="card skill reveal"><div class="skill-icon">DSA</div><h3>Data Structures &amp; Algorithms</h3><p>Arrays, strings, hash maps, binary search, and stacks.</p><span class="skill-status">Practicing</span></article>
+          <article class="card skill reveal"><div class="skill-icon">Git</div><h3>Git &amp; GitHub</h3><p>Repositories for coursework and practice logs.</p><span class="skill-status">Used in projects</span></article>
+          <article class="card skill reveal"><div class="skill-icon">&lt;/&gt;</div><h3>HTML, CSS &amp; JavaScript</h3><p>Building front-end websites and this portfolio.</p><span class="skill-status">Building</span></article>
+          <article class="card skill reveal"><div class="skill-icon">Py</div><h3>Python &amp; AI Integration</h3><p>Exploring Python and machine learning tools.</p><span class="skill-status">Learning</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">04 / Projects</div>
+          <h2 class="section-title">Portfolio work.</h2>
+          <p class="section-intro">Repositories from my GitHub profile, mostly coursework and practice logs.</p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="card project reveal">
+            <div class="project-number">PROJECT / 01</div>
+            <h3>LeetCode Solutions</h3>
+            <p>
+              A practice log of LeetCode solutions in C++ for the Portfolio Building course,
+              grouped by topic (arrays and strings, basic algorithms, stacks) with a notes
+              file for each problem and a progress tracker.
+            </p>
+            <div class="project-tags"><span class="tag">C++</span><span class="tag">Algorithms</span><span class="tag">LeetCode</span></div>
+            <a class="project-link" href="https://github.com/VaRuN8497/leetcode-solution" target="_blank" rel="noopener noreferrer">Open repository ↗</a>
+          </article>
+
+          <article class="card project reveal">
+            <div class="project-number">PROJECT / 02</div>
+            <h3>HackerRank Problem-Solving Portfolio</h3>
+            <p>
+              Five HackerRank problems solved in C++, each with a short write-up of its topic
+              and its time and space complexity.
+            </p>
+            <div class="project-tags"><span class="tag">C++</span><span class="tag">Problem Solving</span><span class="tag">HackerRank</span></div>
+            <a class="project-link" href="https://github.com/VaRuN8497/HackerRank-3rdSem-Portfolio" target="_blank" rel="noopener noreferrer">Open repository ↗</a>
+          </article>
+
+          <article class="card project reveal">
+            <div class="project-number">PROJECT / 03</div>
+            <h3>C++ OOP Practice (PB)</h3>
+            <p>
+              A course repository with a C++ practice file and the Unit 1 slides on
+              object-oriented programming and C++ fundamentals.
+            </p>
+            <div class="project-tags"><span class="tag">C++</span><span class="tag">OOP</span><span class="tag">Coursework</span></div>
+            <a class="project-link" href="https://github.com/VaRuN8497/PB" target="_blank" rel="noopener noreferrer">Open repository ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="goal">
+      <div class="container">
+        <div class="card goal reveal">
+          <div class="eyebrow">05 / Learning Goals</div>
+          <h2 class="section-title">Keep learning. Keep building.</h2>
+          <p>
+            I want to strengthen my programming fundamentals, improve my problem-solving
+            skills, build practical full-stack projects, and explore how to integrate AI into
+            applications. I am working toward being ready for internships.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">06 / Contact</div>
+          <h2 class="section-title">Let’s connect.</h2>
+        </div>
+        <div class="card contact-card reveal">
+          <div>
+            <h3>Open to learning and collaboration.</h3>
+            <p>Find my work and activity on these profiles.</p>
+          </div>
+          <div class="social-links">
+            <a class="btn btn-primary" href="https://github.com/VaRuN8497" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a class="btn btn-secondary" href="https://www.linkedin.com/in/varun-kumar-86139a383" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <a class="btn btn-secondary" href="https://leetcode.com/u/Varun_Chan7/" target="_blank" rel="noopener noreferrer">LeetCode ↗</a>
+            <a class="btn btn-secondary" href="https://www.hackerrank.com/profile/varunkashyap7214" target="_blank" rel="noopener noreferrer">HackerRank ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <span>© 2026 Varun Kumar | Student Developer Portfolio</span>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
